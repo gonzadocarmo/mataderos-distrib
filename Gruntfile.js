@@ -97,6 +97,7 @@ module.exports = function(grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
+              connect.static(appConfig.tmp),
               connect.static(appConfig.app)
             ];
           }
@@ -216,6 +217,7 @@ module.exports = function(grunt) {
       'concurrent:server',
       'autoprefixer:server',
       'coffee:server',
+      'copy:server',
       'connect:livereload',
       'watch'
     ]);
