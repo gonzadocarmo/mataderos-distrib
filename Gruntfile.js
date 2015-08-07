@@ -233,6 +233,8 @@ module.exports = function(grunt) {
     'wiredep',
     'concurrent:test',
     'autoprefixer',
+    'coffee',
+    'ngtemplates',
     'connect:test',
     'karma'
   ]);
