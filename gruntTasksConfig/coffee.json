@@ -2,18 +2,18 @@
   "server": {
     "files": [{
       "expand": true,
-      "cwd": "<%= yeoman.app/modules",
-      "src": "{,*/}*.coffee",
-      "dest": "<%= yeoman.tmp/modules",
+      "cwd": "<%= yeoman.app %>/modules",
+      "src": "{,**/}*.coffee",
+      "dest": "<%= yeoman.tmp %>/modules",
       "ext": ".js"
     }]
   },
   "test": {
     "files": [{
       "expand": true,
-      "cwd": "<%= yeoman.app/modules",
+      "cwd": "<%= yeoman.app %>/modules",
       "src": "{,*/}test/*.coffee",
-      "dest": "<%= yeoman.tmp/modules",
+      "dest": "<%= yeoman.tmp %>/modules",
       "ext": ".js"
     }]
   }
