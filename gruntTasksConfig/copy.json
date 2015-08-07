@@ -22,7 +22,33 @@
       "cwd": "bower_components/bootstrap/dist",
       "src": "fonts/*",
       "dest": "<%= yeoman.dist %>"
+    }, {
+      "expand": true,
+      "cwd": "<%= yeoman.tmp %>/modules",
+      "dest": "<%= yeoman.dist %>/modules",
+      "src": [
+        "{,**/}*.js"
+      ]
+    }, {
+      "expand": true,
+      "cwd": "<%= yeoman.app %>/modules",
+      "dest": "<%= yeoman.dist %>/modules",
+      "src": [
+        "*/views/*.html"
+      ]
     }]
+  },
+  "server": {
+    "files": [
+      {
+        "expand": true,
+        "cwd": "<%= yeoman.app %>/modules",
+        "dest": "<%= yeoman.tmp %>/modules",
+        "src": [
+          "*/views/*.html"
+        ]
+      }
+    ]
   },
   "styles": {
     "expand": true,
