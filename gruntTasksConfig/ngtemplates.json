@@ -1,0 +1,12 @@
+{
+  "dist": {
+    "options": {
+      "module": "pedidosApp",
+      "htmlmin": "<%= htmlmin.dist.options %>",
+      "usemin": "scripts/scripts.js"
+    },
+    "cwd": "<%= yeoman.app %>",
+    "src": "views/{,*/}*.html",
+    "dest": ".tmp/templateCache.js"
+  }
+}

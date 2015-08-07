@@ -1,0 +1,5 @@
+{
+  "dist": {
+    "html": ["<%= yeoman.dist %>/*.html"]
+  }
+}
