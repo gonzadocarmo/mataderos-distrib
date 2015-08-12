@@ -213,7 +213,7 @@ module.exports = function(grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+      'wiredep:app',
       'concurrent:server',
       'autoprefixer:server',
       'coffee:server',
@@ -257,9 +257,7 @@ module.exports = function(grunt) {
     'htmlmin'
   ]);
 
-  grunt.registerTask('default', [
-    'newer:jshint',
-    'test',
-    'build'
-  ]);
+  grunt.registerTask('default', function(target){
+    grunt.task.run(['serve:' + target]);
+  });
 };
