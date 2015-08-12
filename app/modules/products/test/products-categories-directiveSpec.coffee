@@ -1,4 +1,4 @@
-describe 'Products Categories Direcive', ->
+describe 'Products Categories Directive', ->
 
   beforeEach ->
     module 'ionic'
