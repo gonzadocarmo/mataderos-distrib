@@ -2,7 +2,7 @@ angular.module('pedidosApp').controller 'ProductsAdapter',
   ($http) ->
 
     retrieveCategories = () ->
-      $http.get( '/productsCategories.php').then (response) ->
+      $http.get( '/be/productsCategories.php').then (response) ->
         {
           success: true
           data: response

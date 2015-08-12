@@ -7,6 +7,8 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var path = require("path")
+
 module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
@@ -16,7 +18,8 @@ module.exports = function(grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare:'grunt-usemin',
     ngtemplates:'grunt-angular-templates',
-    cdnify:'grunt-google-cdn'
+    cdnify:'grunt-google-cdn',
+    configureProxies: 'grunt-connect-proxy'
   });
 
   // Configurable paths for the application
@@ -88,6 +91,7 @@ module.exports = function(grunt) {
           open: true,
           middleware: function(connect) {
             return [
+              require("grunt-connect-proxy/lib/utils").proxyRequest,
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -124,6 +128,15 @@ module.exports = function(grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
+      },
+      fakeBackend: {
+        "proxies": [
+          {
+            "context": "/be",
+            "host": "localhost",
+            "port": 9001
+          }
+        ]
       }
     },
 
@@ -152,6 +165,18 @@ module.exports = function(grunt) {
               js: '\'{{filePath}}\','
             }
           }
+        }
+      }
+    },
+
+    express: {
+      custom: {
+        options: {
+          "hostname": "localhost",
+          "port": 9001,
+          "bases": ".tmp",
+          "server": path.resolve("./other/fakeBackend")
+
         }
       }
     },
@@ -260,4 +285,17 @@ module.exports = function(grunt) {
   grunt.registerTask('default', function(target){
     grunt.task.run(['serve:' + target]);
   });
+
+  grunt.registerTask('fake', [
+    'express',
+    'clean:server',
+    'wiredep:app',
+    'concurrent:server',
+    'autoprefixer:server',
+    'coffee:server',
+    'copy:server',
+    'configureProxies:fakeBackend',
+    'connect:livereload',
+    'watch'
+  ])
 };
